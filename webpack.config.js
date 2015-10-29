@@ -3,7 +3,10 @@ var webpack = require('webpack');
 
 console.log( path.resolve(__dirname));
 config = {
-    devtool: 'eval',
+    devtool: 'inline-source-map',
+    devServer: {
+        contentBase: './build'
+    },
     entry: [
         'webpack-dev-server/client?http://localhost:3001',
         'webpack/hot/only-dev-server',
@@ -25,13 +28,22 @@ config = {
                 loaders: ['eslint']
             }
         ],
-        loaders: [{
-            loaders: [
-                'react-hot-loader',
-                'babel-loader'
-            ],
-            include: path.join(__dirname, 'app')
-        }]
+        loaders: [
+            {
+                test: /\.jsx?$/,
+                loader: 'react-hot-loader',
+                include: path.join(__dirname, 'app')
+            },
+            {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                loader: 'babel',
+                query: {
+                    stage: 0
+                }
+            }
+
+        ]
     }
 };
 
