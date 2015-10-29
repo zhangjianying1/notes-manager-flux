@@ -8,4 +8,5 @@ var store = {
   notices: []
 };
 
+
 module.exports = store;

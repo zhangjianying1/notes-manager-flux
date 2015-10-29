@@ -1,12 +1,70 @@
 <html>
 <head>
-  <title>React course</title>
-  <link rel="stylesheet" href="main.css">
+    <title>React course</title>
+    <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
-  <!-- TODO -->
-  <div id="root"></div>
-  <script src="http://localhost:3001/dev/bundle.js"></script>
+<!-- TODO -->
+    <div class="b-container">
+        <h2 class = "b-header b-header_title">Note Manager</h2>
+        <div class="b-content">
+            <div class="b-actionBar">
+                <div class="b-btn b-btns__add_folder">
+                    <span class="fontawesome-plus"></span>
+                </div>
+                <div class="b-btn b-btns__add_note">
+                    <span class="fontawesome-pencil"></span>
+                </div>
+                <div class="b-btn b-btns__remove_note">
+                    <span class="fontawesome-remove"></span>
+                </div>
+                <div class="b-btn b-btn_more">...</div>
+            </div><div class="b-folders">
+                <div class = "b-folders_content">
+                    <div class="b-folder__item">
+                        <div class="b-folder__item_icon">
+                            <span class="fontawesome-folder-close"></span>
+                        </div><div class="b-folder__item_title">
+                            asd
+                        </div>
+                    </div>
+                    <div class="b-folder__item">
+                        <div class="b-folder__item_icon">
+                            <span class="fontawesome-folder-open"></span>
+                        </div><div class="b-folder__item_title">
+                            asd
+                        </div>
+                    </div>
+                    <div class="b-folder__item b-folder__item_inserted">
+                        <div class="b-folder__item_icon">
+                            <span class="fontawesome-folder-close"></span>
+                        </div><div class="b-folder__item_title">
+                        asd
+                    </div>
+                    </div>
+                </div>
+            </div><div class="b-desktop">
+                <div class="b-search__wrapper">
+                    <div class="b-search">
+                        <input type="text" class="b-search__input" placeholder = ".."/>
+                    </div>
+                </div>
+                <div class="b-desktop__content">
+                    <div class="b-note">
+                        <div class="b-note__icon">
+                            <img class = "b-note__icon_img"  src="../assets/note.png" alt="note"/>
+                        </div>
+                        <div class="b-note__title">
+                            title
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="b-footer">asd
+        </div>
+    </div>
+    <script src="http://localhost:3001/dev/bundle.js"></script>
 </body>
 </html>

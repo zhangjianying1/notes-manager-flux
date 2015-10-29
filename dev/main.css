@@ -1,0 +1,241 @@
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+
+* {
+    margin: 0;
+    padding:0;
+}
+body{
+    height: auto;
+    font-family: Helvetica, Arial, sans-serifial;
+}
+.b-folders,
+.b-desktop,
+.b-actionBar{
+    display:inline-block;
+    box-sizing: border-box;
+    padding:20px;
+}
+.b-container {
+    height:100vh;
+}
+.b-content {
+    display:inline-block;
+    width: 100%;
+    height:90%;
+    border:2px solid #000;
+    box-sizing: border-box;
+}
+
+/*-------------------*/
+.b-header {
+    height:5%;
+    max-height:5vh;
+    border-left: 2px solid #000;
+    border-right: 2px solid #000;
+    border-top: 2px solid #000;
+}
+.b-header_title {
+    line-height: 5vh;
+}
+/*--------------------*/
+.b-btn {
+    display:block;
+    font-size: 2.5em;
+    text-align: center;
+    margin: 10px 0;
+    cursor: pointer;
+    color: #000000;
+    transition: transform .5s;
+}
+.b-btn:hover {
+    transform: scale(1.1);
+}
+.b-actionBar {
+    width:5%;
+    float:left;
+    height:100%;
+    padding:10px;
+}
+.b-actionBar:after {
+    content:'';
+    width:100%;
+    clear:both;
+}
+
+[class*="fontawesome-"]:before {
+    font-family: 'FontAwesome', sans-serif;
+}
+
+
+/*-------------------------*/
+
+.b-folders {
+    height: 100%;
+    width:35%;
+    padding:20px;
+}
+
+.b-folders_content {
+    border: 2px solid #000;
+    border-radius: 4px;
+    height:95%
+}
+
+.b-folder__item {
+    width:100%;
+    display:table;
+    box-sizing: border-box;
+    transition: all 0.5s;
+    cursor:pointer;
+}
+.b-folder__item.active {
+    background:#95BCF2;
+}
+.b-folder__item:hover {
+    background:#95BCF2;
+}
+.b-folder__item:hover .b-folder__item_icon{
+    transform:scale(1.1);
+}
+.b-folder__item_icon,
+.b-folder__item_title{
+    display:inline-block;
+    box-sizing: border-box;
+}
+.b-folder__item_icon {
+    width:20%;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 2em;
+    transition: all .5s;
+}
+.b-folder__item_title {
+    width:80%;
+    padding:15px 0;
+    vertical-align: middle;
+}
+.b-folder__item_inserted {
+    padding-left:40px;
+}
+
+/*---------------------------*/
+
+.b-desktop {
+    width:60%;
+    float:right;
+    height:100%;
+}
+.b-actionBar:after {
+    content:'';
+    width:100%;
+    clear:both;
+}
+
+.b-search__wrapper {
+    width: 100%;
+    position:relative;
+    display: table;
+}
+
+.b-search {
+    width: 200px;
+    float:right;
+    display:flex;
+    flex-direction: row-reverse;
+}
+input {
+    outline: none;
+}
+.b-search__input {
+    width:100%;
+    display:inline-flex;
+    flex-direction: row-reverse;
+    padding:5px 5px;
+    border:2px solid #cbcbcb;
+    border-radius: 5px;
+    position: relative;
+    transition: border-color .5s;
+}
+.b-search__input:hover {
+    border:2px solid #000;
+}
+.b-search__input:focus {
+    border:2px solid #000;
+}
+.b-search__input::-webkit-input-placeholder {
+    text-indent: 0px;
+    transition: text-indent 0.5s ease;
+
+    font-size: 1.1em;
+}
+.b-search__input::-webkit-input-placeholder::before {
+    font-family: FontAwesome;
+    content: '\f002';
+    font-size: 1em;
+    position:absolute;
+    left:5px;
+    top:6px;
+    transform:rotate(10deg);
+    transition:all;
+}
+
+.b-search__input::-moz-placeholder {
+    opacity:1;
+    transition: opacity 0.5s ease;
+
+    font-size: 1.1em;
+}
+.b-search__input:-moz-placeholder {
+    opacity:1;
+    transition: opacity 0.5s ease;
+
+    font-size: 1.1em;
+}
+.b-search__input:-ms-input-placeholder {
+    opacity:1;
+    transition: opacity 0.5s ease;
+
+    font-size: 1.1em;
+}
+.b-search__input:focus::-webkit-input-placeholder {
+    opacity:0;
+    transition:opacity 0.5s ease;
+}
+.b-search__input:focus::-moz-placeholder  {
+    opacity:0;
+    transition: text-indent 0.5s ease;
+}
+.b-search__input:focus:-moz-placeholder {
+    opacity:0;
+    transition: opacity 0.5s ease;
+}
+.b-search__input:focus:-ms-input-placeholder {
+    opacity:0;
+    transition: opacity 0.5s ease;
+}
+.b-note {
+    width:80px;
+    display:inline-block;
+    cursor:pointer;
+}
+.b-note__icon {
+    width:90%;
+    height:auto;
+    margin:0 auto;
+}
+
+.b-note__title {
+    text-align: center;
+}
+
+.b-note__icon_img {
+    width:100%;
+}
+
+.b-footer {
+    background:#000;
+    height:5%;
+    max-height:5vh;
+    position:relative;
+    bottom:0;
+}
