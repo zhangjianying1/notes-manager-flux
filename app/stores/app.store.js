@@ -7,29 +7,24 @@ import AppConstant from '../constants/app.constants.js';
 
 const CHANGE_EVENT = 'change';
 
-let _todos = {};
+let notes = {};
 
-const TodoStore = createStore({
+const AppStore = createStore({
     getAll () {
-        return _todos;
+        return _notes;
     }
 });
 
-TodoStore.dispatchToken = register(actionObject => {
-    let text;
+AppStore.dispatchToken = register(actionObject => {
     let action = actionObject.action;
 
     console.log(action);
     switch(action.actionType) {
-        case AppConstant.TODO_CREATE:
-            text = action.text.trim();
-            if (text !== '') {
-                create(text);
-                TodoStore.emitChange();
-            }
+        case AppConstant.NOTE_CREATE:
+            AppStore.emitChange();
             break;
 
-        case AppConstant.TODO_DESTROY:
+        case AppConstant.NOTE_DESTROY:
             destroy(action.id);
             TodoStore.emitChange();
             break;
@@ -37,4 +32,4 @@ TodoStore.dispatchToken = register(actionObject => {
     }
 });
 
-export default TodoStore;
+export default AppStore;

@@ -2,12 +2,14 @@
  * Created by ilitvinov on 29.10.2015.
  */
 import { EventEmitter } from 'events';
-import { each, isFunction } from 'underscore';
+import { each, isFunction } from 'lodash';
 
 const CHANGE_EVENT = 'change';
 
+console.log(each);
 export function createStore(spec) {
     const emitter = new EventEmitter();
+
     emitter.setMaxListeners(0);
 
     const store = Object.assign({

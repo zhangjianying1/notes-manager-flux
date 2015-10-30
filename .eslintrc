@@ -28,7 +28,7 @@
     "use-isnan": 2,
     "semi": [2, "always"],
     "no-debugger": 1,
-    "no-console": 2,
+    "no-console": 1,
     "no-use-before-define": 2,
     "comma-dangle": [2, "never"],
     "no-dupe-args": 2,

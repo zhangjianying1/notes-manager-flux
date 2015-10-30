@@ -2,9 +2,20 @@
  * Created by ilitvinov on 29.10.2015.
  */
 import {handleViewAction} from '../app.dispatcher.js';
+import API from '../utils/API.js';
 import AppConstant from '../constants/app.constant.js';
 
-const TodoActions = {
+const AppActions = {
+    getFolders: () => {
+        API
+            .get('/directories/')
+            .then((directories) => {
+                console.log(directories)
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    },
     noteCreate: (text) => {
         console.log('Create NOTE!');
 
@@ -21,4 +32,4 @@ const TodoActions = {
     }
 };
 
-export default TodoActions;
+export default AppActions;

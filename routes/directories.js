@@ -11,7 +11,6 @@ router
     })
     .get('/', function (req, res) {
         console.log(store.directories);
-        debugger;
         res.send(store.directories)
     })
     .post('/', function (req, res) {

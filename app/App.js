@@ -3,11 +3,17 @@
  */
 
 import React, { Component } from 'react';
+import Header from './components/header.jsx';
+import Main from './components/main.jsx';
+import AppStore from './stores/app.store.js';
 
 export default class App extends Component {
     render() {
         return (
-            <h1 test='asds'>Test</h1>
+            <div className='b-container'>
+                <Header />
+                <Main/>
+            </div>
         );
     }
 }

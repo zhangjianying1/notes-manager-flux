@@ -8,6 +8,6 @@ export default keyMirror({
     NOTE_DESTROY: null,
     NOTE_UPDATE: null,
     FOLDER_CREATE: null,
-    FOLDER_DESTROY:null,
-    FOLDER_UPDATE:null
+    FOLDER_DESTROY: null,
+    FOLDER_UPDATE: null
 });
