@@ -5,7 +5,7 @@ class Folder extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
-           isEdit: true
+           isEdit: false
         };
     }
 
@@ -14,6 +14,11 @@ class Folder extends React.Component {
         this.props.open(this.refs.folder.id);
     }
     _edit () {
+        this.setState({
+            isEdit: !this.state.isEdit
+        });
+    }
+    _onChange() {
 
     }
     render () {
@@ -27,12 +32,15 @@ class Folder extends React.Component {
                  id = {this.props.directory.id}
                  ref = 'folder'
                  onClick = {this._open.bind(this)}
+
                 >
                 <div className='b-folder__item_icon'>
                     <span className='fontawesome-folder-close'></span>
                 </div><div className={_classNames}>
-                    <input className = 'b-folder__input' />
-                    <div className = 'b-folder__title'>
+                    <input className = 'b-folder__input'
+                        />
+                    <div className = 'b-folder__title'
+                         onDoubleClick = {this._edit.bind(this)}>
                         {this.props.directory.name}
                     </div>
                 </div>
