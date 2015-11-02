@@ -31,6 +31,9 @@ const AppActions = {
             .catch((err) => {
                 console.log(err);
             });
+    },
+    update: () => {
+
     }
 };
 

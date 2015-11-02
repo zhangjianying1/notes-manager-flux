@@ -25,8 +25,6 @@ export function handleApiAction (action) {
 }
 
 
-
-
 export function waitFor(ids) {
     return flux.waitFor(ids);
 }
