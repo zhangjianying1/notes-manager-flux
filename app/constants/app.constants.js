@@ -9,5 +9,7 @@ export default keyMirror({
     NOTE_UPDATE: null,
     FOLDER_CREATE: null,
     FOLDER_DESTROY: null,
-    FOLDER_UPDATE: null
+    FOLDER_UPDATE: null,
+    RECEIVE_DIRECTORIES: null,
+    RECEIVE_NOTICES: null
 });

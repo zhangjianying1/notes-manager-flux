@@ -4,32 +4,54 @@
 import { createStore } from './store.utils.js';
 import { register } from '../app.dispatcher.js';
 import AppConstant from '../constants/app.constants.js';
+import _ from 'lodash';
 
 const CHANGE_EVENT = 'change';
 
-let notes = {};
+let _notes = [];
+let _directories = [];
 
+
+function setDirectories (directories) {
+    _directories = directories;
+}
+function setNotes (notes) {
+    _notes = notes;
+}
 const AppStore = createStore({
-    getAll () {
-        return _notes;
+    getDirectories (id) {
+        debugger;
+        return _.filter(_directories, (item) => {
+            return item.parentId === Number(id);
+        });
+    },
+    getNotices (id) {
+        return  _.filter(_notes, (item) => {
+            return item.directoryId === Number(id);
+        });
     }
 });
 
 AppStore.dispatchToken = register(actionObject => {
     let action = actionObject.action;
 
-    console.log(action);
     switch(action.actionType) {
-        case AppConstant.NOTE_CREATE:
-            AppStore.emitChange();
+        case AppConstant.RECEIVE_DIRECTORIES:
+            setDirectories(action.data);
             break;
 
-        case AppConstant.NOTE_DESTROY:
-            destroy(action.id);
-            TodoStore.emitChange();
+        case AppConstant.RECEIVE_NOTICES:
+            setNotes(action.data);
+            break;
+
+        case AppConstant.NOTE_CREATE:
             break;
 
     }
+
+    AppStore.emitChange();
+
+    return true;
 });
 
 export default AppStore;

@@ -1,34 +1,36 @@
 /**
  * Created by ilitvinov on 29.10.2015.
  */
-import {handleViewAction} from '../app.dispatcher.js';
+import { handleViewAction } from '../app.dispatcher.js';
 import API from '../utils/API.js';
-import AppConstant from '../constants/app.constant.js';
+import AppConstant from '../constants/app.constants.js';
 
 const AppActions = {
-    getFolders: () => {
+    getDirectoriesAPI: () => {
         API
-            .get('/directories/')
+            .get('http://localhost:3000/directories/')
             .then((directories) => {
-                console.log(directories)
+                handleViewAction({
+                    actionType: AppConstant.RECEIVE_DIRECTORIES,
+                    data: directories
+                });
             })
             .catch((err) => {
                 console.log(err);
+            });
+    },
+    getNoticesAPI: () => {
+        API
+            .get('http://localhost:3000/notices/')
+            .then((notices) => {
+                handleViewAction({
+                    actionType: AppConstant.RECEIVE_NOTICES,
+                    data: notices
+                });
             })
-    },
-    noteCreate: (text) => {
-        console.log('Create NOTE!');
-
-        handleViewAction({
-            actionType: AppConstant.NOTE_CREATE,
-            text
-        })
-    },
-    destroy: (id) => {
-        handleViewAction({
-            actionType:AppConstant.TODO_DESTROY,
-            id
-        });
+            .catch((err) => {
+                console.log(err);
+            });
     }
 };
 

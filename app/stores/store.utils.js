@@ -14,7 +14,6 @@ export function createStore(spec) {
 
     const store = Object.assign({
         emitChange() {
-            debugger;
             emitter.emit(CHANGE_EVENT);
         },
 

@@ -10,6 +10,7 @@ router
         res.send('Ok');
     })
     .get('/', function (req, res) {
+        console.log('asdadasd');
         console.log(store.directories);
         res.send(store.directories)
     })

@@ -5,14 +5,15 @@ const API = {
         return new Promise((resolve, reject)=> {
             request
                 .get(url)
-                .end((res) => {
+                .end((err, res) => {
+                    debugger;
                     if  (res.status === 404) {
-                        reject()
+                        reject(err);
                     } else {
-                        resolve()
+                        resolve(JSON.parse(res.text));
                     }
-                })
-        })
+                });
+        });
     }
 };
 

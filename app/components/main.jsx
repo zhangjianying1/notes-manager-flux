@@ -8,12 +8,17 @@ class Main extends React.Component {
         super(prop);
     }
 
+    _open (id) {
+        this.props.open(id);
+    }
     render () {
         return (
             <div className='b-content'>
                 <ActionBar />
-                <Folders />
-                <Desktop />
+                <Folders open = {this._open.bind(this)}
+                    directories = {this.props.directories}/>
+                <Desktop
+                    notices = { this.props.notices }/>
             </div>
         );
     }
