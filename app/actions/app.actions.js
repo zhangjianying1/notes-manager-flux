@@ -49,7 +49,8 @@ const AppActions = {
             .put(`http://localhost:3000/directories/${data.id}`, data)
             .then( () => {
                 handleViewAction({
-                    actiontype: AppConstant.RECEIVE_DIRECTORIES
+                    actionType: AppConstant.UPDATE_FOLDER,
+                    data: data
                 });
             })
             .catch( err => {

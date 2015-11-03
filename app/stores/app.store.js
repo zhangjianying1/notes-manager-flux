@@ -15,6 +15,10 @@ let _directories = [];
 function setDirectories (directories) {
     _directories = directories;
 }
+function updateDirectory (data) {
+    debugger;
+    //_directories[data.id+1]
+}
 function setNotes (notes) {
     _notes = notes;
 }
@@ -37,6 +41,10 @@ AppStore.dispatchToken = register(actionObject => {
     switch(action.actionType) {
         case AppConstant.RECEIVE_DIRECTORIES:
             setDirectories(action.data);
+            break;
+
+        case AppConstant.UPDATE_FOLDER:
+            updateDirectory(action.data);
             break;
 
         case AppConstant.RECEIVE_NOTICES:

@@ -1,13 +1,11 @@
 /**
  * Created by ilitvinov on 28.10.2015.
  */
-
 import React, { Component } from 'react';
 import Header from './components/header.jsx';
 import Main from './components/main.jsx';
 import AppStore from './stores/app.store.js';
 import Actions from './actions/app.actions.js';
-
 
 export default class App extends Component {
     constructor (props) {
@@ -20,7 +18,6 @@ export default class App extends Component {
     }
 
     _create () {
-        debugger;
         Actions.createFolder({ 'parentId': 1, 'name': 'TeqstTEst' });
         Actions.getDirectoriesAPI();
     }
