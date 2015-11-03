@@ -20,7 +20,6 @@ function setNotes (notes) {
 }
 const AppStore = createStore({
     getDirectories (id) {
-        debugger;
         return _.filter(_directories, (item) => {
             return item.parentId === Number(id);
         });

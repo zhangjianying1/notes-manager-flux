@@ -11,11 +11,16 @@ class Main extends React.Component {
     _open (id) {
         this.props.open(id);
     }
+
     render () {
         return (
             <div className='b-content'>
-                <ActionBar />
+                <ActionBar
+                    create = {this.props.create.bind(this)}
+                    />
                 <Folders open = {this._open.bind(this)}
+                    active = { this.props.active }
+                    updateFolder = { this.props.updateFolder.bind(this) }
                     directories = {this.props.directories}/>
                 <Desktop
                     notices = { this.props.notices }/>

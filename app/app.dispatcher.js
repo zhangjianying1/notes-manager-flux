@@ -17,14 +17,6 @@ export function handleViewAction (action) {
     });
 }
 
-export function handleApiAction (action) {
-    flux.dispatch({
-        source: 'API_ACTION',
-        action: action
-    });
-}
-
-
 export function waitFor(ids) {
     return flux.waitFor(ids);
 }

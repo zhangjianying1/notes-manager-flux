@@ -9,7 +9,8 @@ class ActionBar extends React.Component {
         return (
             <div className='b-actionBar'>
                 <div className='b-btn b-btns__add_folder'>
-                    <span className='fontawesome-plus'></span>
+                    <span className='fontawesome-plus'
+                        onClick = {this.props.create.bind(this)}></span>
                 </div>
                 <div className='b-btn b-btns__add_note'>
                     <span className='fontawesome-pencil'></span>

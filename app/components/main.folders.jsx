@@ -8,10 +8,11 @@ class Folders extends React.Component {
             isEdit: false
         };
     }
+
     _open (id) {
-        debugger;
        this.props.open(id);
     }
+
     render () {
         let directories = [];
         let allDirectories = this.props.directories;
@@ -21,6 +22,8 @@ class Folders extends React.Component {
                 <Folder
                     id = {allDirectories[key].id}
                     open = { this._open.bind(this) }
+                    active = { this.props.active }
+                    updateFolder = { this.props.updateFolder.bind(this) }
                     ref = 'folder'
                     key = {key}
                     directory = {allDirectories[key]}

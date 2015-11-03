@@ -8,6 +8,7 @@ import Main from './components/main.jsx';
 import AppStore from './stores/app.store.js';
 import Actions from './actions/app.actions.js';
 
+
 export default class App extends Component {
     constructor (props) {
         super(props);
@@ -16,6 +17,12 @@ export default class App extends Component {
             notices: AppStore.getNotices(1),
             opened: 1
         };
+    }
+
+    _create () {
+        debugger;
+        Actions.createFolder({ 'parentId': 1, 'name': 'TeqstTEst' });
+        Actions.getDirectoriesAPI();
     }
 
     componentWillMount () {
@@ -39,9 +46,14 @@ export default class App extends Component {
         });
     }
 
-    _onChange () {
+    _updateFolder (data) {
         debugger;
-        this.setState({
+        Actions.updateFolder(data);
+        Actions.getDirectoriesAPI();
+    }
+
+    _onChange () {
+       this.setState({
             directories: AppStore.getDirectories(1),
             notices: AppStore.getNotices(this.state.opened)
         });
@@ -52,9 +64,12 @@ export default class App extends Component {
         return (
             <div className='b-container'>
                 <Header />
-                <Main open = { this._open.bind(this) }
+                <Main create = { this._create.bind(this) }
+                    open = { this._open.bind(this) }
+                    active = { this.state.opened }
                     directories = { this.state.directories }
-                    notices = { this.state.notices }/>
+                    notices = { this.state.notices }
+                    updateFolder = {this._updateFolder.bind(this)}/>
             </div>
         );
     }

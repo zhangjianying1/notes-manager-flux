@@ -32,8 +32,29 @@ const AppActions = {
                 console.log(err);
             });
     },
-    update: () => {
-
+    createFolder: (data) => {
+        API
+            .post('http://localhost:3000/directories/', data)
+            .then( () => {
+                handleViewAction({
+                    actionType: AppConstant.RECEIVE_DIRECTORIES
+                });
+            })
+            .catch( err => {
+                console.log(err);
+            });
+    },
+    updateFolder: (data) => {
+        API
+            .put(`http://localhost:3000/directories/${data.id}`, data)
+            .then( () => {
+                handleViewAction({
+                    actiontype: AppConstant.RECEIVE_DIRECTORIES
+                });
+            })
+            .catch( err => {
+                console.log(err);
+            });
     }
 };
 

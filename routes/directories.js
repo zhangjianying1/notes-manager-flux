@@ -25,8 +25,6 @@ router
                 return dir.id == directory.parentId
             });
 
-
-
         if (parent) {
             _.assign(directory, { id: idGenerator.getNext() });
             store.directories.push(directory);
