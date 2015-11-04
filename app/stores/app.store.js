@@ -62,7 +62,6 @@ const AppStore = createStore({
     },
 
     getActive () {
-        debugger;
       return _active;
     },
     getLastId () {

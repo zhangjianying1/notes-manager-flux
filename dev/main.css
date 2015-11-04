@@ -78,7 +78,11 @@ body{
 .b-folders_content {
     border: 2px solid #000;
     border-radius: 4px;
-    height:95%
+    height:95%;
+    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none; /* IE10+ */
 }
 
 .b-folder__item {
@@ -117,6 +121,10 @@ body{
 }
 .b-folder__input {
     display: none;
+    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none; /* IE10+ */
 }
 .b-folder__item_title.edit .b-folder__input{
     display:block;

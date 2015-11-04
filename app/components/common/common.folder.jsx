@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 
 const ENTER_KEY_CODE = 13;
@@ -18,11 +19,15 @@ class Folder extends React.Component {
     _open (e) {
         this.props.open(this.refs.folder.id, e);
     }
+
     _edit () {
         this.setState({
             isEdit: !this.state.isEdit
         });
+        debugger;
+        console.log();
     }
+
     _update() {
         debugger;
         let data = {
@@ -38,6 +43,8 @@ class Folder extends React.Component {
             value: this.refs.input.value
         });
     }
+
+   
 
     _onChange (e) {
         this.setState({
@@ -61,6 +68,7 @@ class Folder extends React.Component {
             'active': (this.props.directory.id === Number(this.props.active))
         });
 
+
         return (
             <div className={ _classActive }
                  id = {this.props.directory.id}
@@ -74,6 +82,7 @@ class Folder extends React.Component {
                     <input
                         className = 'b-folder__input'
                         ref = 'input'
+                        autoFocus
                         value = { this.state.value }
                         onChange = { this._onChange.bind(this) }
                         onBlur = { this._update.bind(this) }
