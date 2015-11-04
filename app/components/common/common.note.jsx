@@ -6,8 +6,6 @@ class Note extends React.Component {
     }
 
     render () {
-
-
         return (
             <div className='b-note'>
                 <div className='b-note__icon'>

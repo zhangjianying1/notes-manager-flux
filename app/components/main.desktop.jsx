@@ -9,17 +9,16 @@ class Desktop extends React.Component {
     }
 
     render () {
-        let _notices = [];
-
-        forEach(this.props.notices, (item, i) => {
-            _notices.push( <Note notice = { item } key = { i }/>);
-        });
+        //let _notices = [];
+        //
+        //forEach(this.props.notices, (item, i) => {
+        //    _notices.push( <Note notice = { item } key = { i }/>);
+        //});
 
         return (
             <div className='b-desktop'>
                 <Search />
                 <div className='b-desktop__content'>
-                    {_notices}
                 </div>
             </div>
         );

@@ -12,5 +12,6 @@ export default keyMirror({
     FOLDER_UPDATE: null,
     RECEIVE_DIRECTORIES: null,
     RECEIVE_NOTICES: null,
-    UPDATE_FOLDER: null
+    UPDATE_FOLDER: null,
+    FOLDER_OPEN: null
 });

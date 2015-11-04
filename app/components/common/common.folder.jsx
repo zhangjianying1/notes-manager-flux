@@ -1,18 +1,22 @@
 import React from 'react';
 import classNames from 'classnames';
 
+const ENTER_KEY_CODE = 13;
+
 class Folder extends React.Component {
     constructor (props) {
         super(props);
-        debugger;
+        
         this.parentId = this.props.directory.parentId;
         this.state = {
-           isEdit: false
+            isEdit: false,
+            name: this.props.directory.name,
+            value: this.props.directory.name
         };
     }
 
-    _open () {
-        this.props.open(this.refs.folder.id);
+    _open (e) {
+        this.props.open(this.refs.folder.id, e);
     }
     _edit () {
         this.setState({
@@ -20,18 +24,36 @@ class Folder extends React.Component {
         });
     }
     _update() {
+        debugger;
         let data = {
-            id: this.refs.folder.id,
+            id: Number(this.refs.folder.id),
             name: this.refs.input.value,
             parentId: this.parentId
         };
 
-        this.props.updateFolder(data);
+        this.props.update(data);
         this.setState({
-            isEdit: !this.state.isEdit
+            isEdit: !this.state.isEdit,
+            name: this.refs.input.value,
+            value: this.refs.input.value
         });
     }
+
+    _onChange (e) {
+        this.setState({
+            value: e.target.value
+        });
+    }
+
+    _onKeyDown (e) {
+        if (e.keyCode === ENTER_KEY_CODE) {
+            this.refs.input.getDOMNode().blur();
+            this. _update();
+        }
+    }
+
     render () {
+        console.log(this.props);
         let _classEdit = classNames('b-folder__item_title', {
             'edit': this.state.isEdit
         });
@@ -43,19 +65,23 @@ class Folder extends React.Component {
             <div className={ _classActive }
                  id = {this.props.directory.id}
                  ref = 'folder'
-                 onClick = {this._open.bind(this)}
+                 onClick = { this._open.bind(this) }
+                 onDoubleClick = { this._edit.bind(this) }
                 >
                 <div className='b-folder__item_icon'>
                     <span className='fontawesome-folder-close'></span>
                 </div><div className={_classEdit}>
                     <input
                         className = 'b-folder__input'
-                        onBlur = {this._update.bind(this)}
                         ref = 'input'
+                        value = { this.state.value }
+                        onChange = { this._onChange.bind(this) }
+                        onBlur = { this._update.bind(this) }
+                        onKeyDown = {this._onKeyDown.bind(this)}
                         />
                     <div className = 'b-folder__title'
-                         onDoubleClick = {this._edit.bind(this)}>
-                        {this.props.directory.name}
+                        >
+                        {this.state.name}
                     </div>
                 </div>
             </div>

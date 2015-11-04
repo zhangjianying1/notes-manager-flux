@@ -10,14 +10,46 @@ const CHANGE_EVENT = 'change';
 
 let _notes = [];
 let _directories = [];
+let _lastId = null;
+let _active = 1;
 
 
 function setDirectories (directories) {
+    _lastId = _.max(directories, (dir) => {
+        return dir.id;
+    }).id;
     _directories = directories;
 }
+
+function createFolder (directory) {
+    _directories.push(directory);
+}
+
+function setActive (id) {
+    _active = Number(id);
+}
+
 function updateDirectory (data) {
-    debugger;
-    //_directories[data.id+1]
+    let indexOfElement = _.indexOf(_directories, _.find(_directories, item => {
+        return item.id === data.id;
+    }));
+
+   _directories[indexOfElement] = data;
+}
+
+function destroyFolder (id) {
+    let indexOfElement = _.indexOf(_directories, _.find(_directories, item => {
+        return item.id === id;
+    }));
+
+    _.remove(_directories,  (item) => {
+        return item.id === id;
+    });
+    _lastId = _.max(_directories, (dir) => {
+        return dir.id;
+    }).id;
+    _active =  _lastId;
+
 }
 function setNotes (notes) {
     _notes = notes;
@@ -28,10 +60,13 @@ const AppStore = createStore({
             return item.parentId === Number(id);
         });
     },
-    getNotices (id) {
-        return  _.filter(_notes, (item) => {
-            return item.directoryId === Number(id);
-        });
+
+    getActive () {
+        debugger;
+      return _active;
+    },
+    getLastId () {
+        return _lastId;
     }
 });
 
@@ -40,6 +75,7 @@ AppStore.dispatchToken = register(actionObject => {
 
     switch(action.actionType) {
         case AppConstant.RECEIVE_DIRECTORIES:
+
             setDirectories(action.data);
             break;
 
@@ -49,6 +85,20 @@ AppStore.dispatchToken = register(actionObject => {
 
         case AppConstant.RECEIVE_NOTICES:
             setNotes(action.data);
+            break;
+
+        case AppConstant.FOLDER_CREATE:
+            createFolder(action.data);
+            break;
+
+        case AppConstant.FOLDER_DESTROY:
+           destroyFolder(action.data);
+            break;
+
+
+        case AppConstant.FOLDER_OPEN:
+
+            setActive(action.data);
             break;
 
         case AppConstant.NOTE_CREATE:

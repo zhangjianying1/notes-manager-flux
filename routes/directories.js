@@ -67,7 +67,12 @@ router
 
         if (entityIndex !== -1) {
             store.directories.splice(entityIndex, 1);
-            res.send(directory)
+            console.log(directory);
+            setTimeout(function () {
+                console.log('Time');
+                res.send(directory);
+            }, 2000);
+
         } else {
             res.status(500).send('no entity')
         }

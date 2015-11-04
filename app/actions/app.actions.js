@@ -36,9 +36,7 @@ const AppActions = {
         API
             .post('http://localhost:3000/directories/', data)
             .then( () => {
-                handleViewAction({
-                    actionType: AppConstant.RECEIVE_DIRECTORIES
-                });
+               console.log('Ok!');
             })
             .catch( err => {
                 console.log(err);
@@ -56,6 +54,25 @@ const AppActions = {
             .catch( err => {
                 console.log(err);
             });
+    },
+    deleteFolder: (id) => {
+        API
+            .delete(`http://localhost:3000/directories/${id}`)
+            .then( () => {
+                handleViewAction({
+                    actionType: AppConstant.FOLDER_DESTROY,
+                    data: id
+                });
+            })
+            .catch( (err) => {
+                console.log(err);
+            });
+    },
+    setActive: (id) => {
+        handleViewAction({
+            actionType: AppConstant.FOLDER_OPEN,
+            data: id
+        });
     }
 };
 

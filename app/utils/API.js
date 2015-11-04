@@ -45,6 +45,20 @@ const API = {
                     }
                 });
         });
+    },
+    delete: (url) => {
+        return new Promise((resolve, reject) => {
+            request
+                .del(url)
+                .end((err, res) => {
+                    if(res.status === 200) {
+                        console.log(res);
+                        resolve();
+                    } else {
+                        reject();
+                    }
+                });
+        });
     }
 };
 
