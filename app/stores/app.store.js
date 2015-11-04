@@ -15,9 +15,6 @@ let _active = 1;
 
 
 function setDirectories (directories) {
-    _lastId = _.max(directories, (dir) => {
-        return dir.id;
-    }).id;
     _directories = directories;
 }
 
@@ -38,18 +35,9 @@ function updateDirectory (data) {
 }
 
 function destroyFolder (id) {
-    let indexOfElement = _.indexOf(_directories, _.find(_directories, item => {
-        return item.id === id;
-    }));
-
     _.remove(_directories,  (item) => {
         return item.id === id;
     });
-    _lastId = _.max(_directories, (dir) => {
-        return dir.id;
-    }).id;
-    _active =  _lastId;
-
 }
 function setNotes (notes) {
     _notes = notes;

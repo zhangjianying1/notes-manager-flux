@@ -12,7 +12,7 @@ class Folder extends React.Component {
         this.state = {
             isEdit: false,
             name: this.props.directory.name,
-            value: this.props.directory.name
+            value: (this.props.directory.name).trim()
         };
     }
 
@@ -24,15 +24,18 @@ class Folder extends React.Component {
         this.setState({
             isEdit: !this.state.isEdit
         });
-        debugger;
         console.log();
+        setTimeout(()=> {
+            this.refs.input.focus();
+            this.refs.input.select();
+        }, 0);
+
     }
 
     _update() {
-        debugger;
         let data = {
             id: Number(this.refs.folder.id),
-            name: this.refs.input.value,
+            name: (this.refs.input.value).trim(),
             parentId: this.parentId
         };
 
@@ -44,11 +47,9 @@ class Folder extends React.Component {
         });
     }
 
-   
-
     _onChange (e) {
         this.setState({
-            value: e.target.value
+            value: (e.target.value).trim()
         });
     }
 
@@ -60,12 +61,14 @@ class Folder extends React.Component {
     }
 
     render () {
-        console.log(this.props);
         let _classEdit = classNames('b-folder__item_title', {
             'edit': this.state.isEdit
         });
         let _classActive = classNames('b-folder__item', {
             'active': (this.props.directory.id === Number(this.props.active))
+        });
+        let _classIcon = classNames('fontawesome-folder-close', {
+            'fontawesome-folder-open': (this.props.directory.id === Number(this.props.active))
         });
 
 
@@ -77,8 +80,8 @@ class Folder extends React.Component {
                  onDoubleClick = { this._edit.bind(this) }
                 >
                 <div className='b-folder__item_icon'>
-                    <span className='fontawesome-folder-close'></span>
-                </div><div className={_classEdit}>
+                    <span className = { _classIcon }></span>
+                </div><div className={ _classEdit }>
                     <input
                         className = 'b-folder__input'
                         ref = 'input'

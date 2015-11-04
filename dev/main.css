@@ -98,9 +98,7 @@ body{
 .b-folder__item:hover {
     background:#95BCF2;
 }
-.b-folder__item:hover .b-folder__item_icon{
-    transform:scale(1.1);
-}
+
 .b-folder__item_icon,
 .b-folder__item_title{
     display:inline-block;
@@ -121,6 +119,9 @@ body{
 }
 .b-folder__input {
     display: none;
+    border: none;
+    padding:5px 5px;
+    border-radius:5px;
     -webkit-user-select: none; /* webkit (safari, chrome) browsers */
     -moz-user-select: none; /* mozilla browsers */
     -khtml-user-select: none; /* webkit (konqueror) browsers */
