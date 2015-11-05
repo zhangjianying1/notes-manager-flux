@@ -95,6 +95,10 @@ body{
 .b-folder__item.active {
     background:#95BCF2;
 }
+.child {
+    padding-left: 25px;
+}
+
 .b-folder__item:hover {
     background:#95BCF2;
 }

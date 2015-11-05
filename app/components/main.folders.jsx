@@ -2,24 +2,21 @@ import React from 'react';
 import Folder from './common/common.folder.jsx';
 import Actions from '../actions/app.actions.js';
 import AppStore from '../stores/app.store.js';
-console.log('-----------------');
-console.log(AppStore);
+import classNames from 'classnames';
 
 class Folders extends React.Component {
     constructor (prop) {
         super(prop);
+
         this.state = {
             active: AppStore.getActive(),
-            directories: AppStore.getDirectories(1)
+            directories: AppStore.getDirectories(Number(this.props.parentId))
         };
     }
 
     _open (id, e) {
-        if (e.target.id !== 'root') {
-            e.stopPropagation();
-        }
-
-        Actions.setActive(id);
+        debugger;
+        Actions.setActive(Number(id));
     }
 
 
@@ -38,13 +35,12 @@ class Folders extends React.Component {
     _onChange () {
 
         this.setState({
-            directories: AppStore.getDirectories(1),
+            directories: AppStore.getDirectories(Number(this.props.parentId)),
             active: AppStore.getActive()
         });
     }
 
     _update (data) {
-        debugger;
         Actions.updateFolder(data);
         Actions.getDirectoriesAPI();
     }
@@ -52,6 +48,9 @@ class Folders extends React.Component {
     render () {
         let directories = [];
         let allDirectories = this.state.directories;
+        let _childClass = classNames({
+            'child': (Number(this.props.parentId) !== 1)
+        });
 
         for (let key in allDirectories) {
             directories.push(
@@ -59,6 +58,7 @@ class Folders extends React.Component {
                     active = { this.state.active }
                     id = {allDirectories[key].id}
                     ref = 'folder'
+                    onChange = {this._onChange.bind(this)}
                     update = { this._update.bind(this) }
                     open = { this._open.bind(this) }
                     key = {key}
@@ -66,13 +66,9 @@ class Folders extends React.Component {
                     />);
         }
         return (
-            <div className='b-folders'>
-                <div className = 'b-folders_content'
-                     id = 'root'
-                     >
+                <div className = { _childClass }>
                     {directories}
                 </div>
-            </div>
         );
     }
 }

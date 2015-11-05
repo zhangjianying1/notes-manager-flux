@@ -24,8 +24,9 @@ const API = {
                    if(res.status === 404 || res.status === 500) {
                        reject();
                    } else {
+
                        console.log('OK!');
-                       resolve();
+                       resolve(JSON.parse(res.text));
                    }
                 });
         });

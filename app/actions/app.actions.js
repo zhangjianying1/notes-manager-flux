@@ -20,6 +20,7 @@ const AppActions = {
             });
     },
     getNoticesAPI: () => {
+
         API
             .get('http://localhost:3000/notices/')
             .then((notices) => {
@@ -35,8 +36,12 @@ const AppActions = {
     createFolder: (data) => {
         API
             .post('http://localhost:3000/directories/', data)
-            .then( () => {
-               console.log('Ok!');
+            .then( (folder) => {
+
+                handleViewAction({
+                    actionType: AppConstant.FOLDER_CREATE,
+                    data: folder
+                });
             })
             .catch( err => {
                 console.log(err);
@@ -74,6 +79,7 @@ const AppActions = {
             data: id
         });
     }
+
 };
 
 export default AppActions;

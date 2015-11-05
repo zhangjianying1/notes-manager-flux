@@ -11,10 +11,11 @@ class ActionBar extends React.Component {
     }
 
     _create () {
-        Actions.createFolder({
-            'parentId': 1, 'name': ' New folder'
-        });
         Actions.getDirectoriesAPI();
+        Actions.createFolder({
+            'parentId': this.state.active, 'name': ' New folder'
+        });
+
     }
 
     _delete () {

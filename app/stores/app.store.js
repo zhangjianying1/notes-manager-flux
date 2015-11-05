@@ -8,8 +8,9 @@ import _ from 'lodash';
 
 const CHANGE_EVENT = 'change';
 
-let _notes = [];
+let _notices = [];
 let _directories = [];
+let _child = [];
 let _lastId = null;
 let _active = 1;
 
@@ -39,16 +40,22 @@ function destroyFolder (id) {
         return item.id === id;
     });
 }
-function setNotes (notes) {
-    _notes = notes;
+function setNotices (notices) {
+    _notices = notices;
 }
 const AppStore = createStore({
     getDirectories (id) {
+        debugger;
         return _.filter(_directories, (item) => {
             return item.parentId === Number(id);
         });
     },
+    getNotices (id) {
 
+      return _.filter(_notices, (item) => {
+          return item.directoryId === Number(id);
+      });
+    },
     getActive () {
       return _active;
     },
@@ -62,7 +69,6 @@ AppStore.dispatchToken = register(actionObject => {
 
     switch(action.actionType) {
         case AppConstant.RECEIVE_DIRECTORIES:
-
             setDirectories(action.data);
             break;
 
@@ -71,10 +77,11 @@ AppStore.dispatchToken = register(actionObject => {
             break;
 
         case AppConstant.RECEIVE_NOTICES:
-            setNotes(action.data);
+            setNotices(action.data);
             break;
 
         case AppConstant.FOLDER_CREATE:
+
             createFolder(action.data);
             break;
 
