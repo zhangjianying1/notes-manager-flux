@@ -4,7 +4,9 @@
   "description": "Backend for React.js course",
   "scripts": {
     "dev": "set NODE_ENV=DEV&node server.js",
+    "dev_mac": "export NODE_ENV=DEV&&node server.js",
     "build": "set NODE_ENV=production&webpack --config webpack.config.production.js&node server.js",
+    "build_mac": "export NODE_ENV=production&&webpack --config webpack.config.production.js&node server.js",
     "lint": "eslint . --ext .js --ext .jsx || true"
   },
   "keywords": [

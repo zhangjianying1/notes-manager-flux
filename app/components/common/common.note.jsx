@@ -28,7 +28,6 @@ class Note extends React.Component {
     }
 
     _update() {
-        debugger;
         let data = {
             id: Number(this.props.notice.id),
             title: (this.refs.input.value).trim(),
