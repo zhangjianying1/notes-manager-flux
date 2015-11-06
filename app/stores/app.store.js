@@ -50,7 +50,7 @@ function createNotice (notice) {
 }
 
 function updateNotice (notice) {
-    debugger;
+
     let indexOfElement = _.indexOf(notice, _.find(_notices, item => {
         return item.id === notice.id;
     }));
@@ -66,10 +66,15 @@ const AppStore = createStore({
     },
 
     getNotices (id) {
-        debugger;
       return _.filter(_notices, (item) => {
           return item.directoryId === Number(id);
       });
+    },
+
+    getNotice (id) {
+        return _.filter(_notices, (item) => {
+            return item.id === Number(id);
+        })[0];
     },
 
     getActive () {

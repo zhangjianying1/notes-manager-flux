@@ -25,7 +25,7 @@ class Desktop extends React.Component {
     }
 
     _onChange () {
-        debugger;
+
         this.setState({
             active: AppStore.getActive(),
             notices: AppStore.getNotices(AppStore.getActive())
@@ -35,7 +35,7 @@ class Desktop extends React.Component {
     render () {
         let _notices = [];
 
-        debugger;
+
         forEach(this.state.notices, (item, i) => {
             _notices.push( <Note notice = { item } key = { i }/>);
         });

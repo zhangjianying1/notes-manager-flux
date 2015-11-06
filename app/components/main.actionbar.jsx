@@ -5,22 +5,22 @@ import AppStore from '../stores/app.store.js';
 class ActionBar extends React.Component {
     constructor (prop) {
         super(prop);
-        this.state = {
-            active: AppStore.getActive()
-        };
+        //this.state = {
+        //    active: AppStore.getActive()
+        //};
     }
 
     _create () {
         Actions.getDirectoriesAPI();
         Actions.createFolder({
-            'parentId': this.state.active, 'name': ' New folder'
+            'parentId': AppStore.getActive, 'name': ' New folder'
         });
 
     }
 
     _delete () {
         if(this.state.active !== 1) {
-            Actions.deleteFolder(this.state.active);
+            Actions.deleteFolder(AppStore.getActive());
             Actions.getDirectoriesAPI();
         }
     }
@@ -40,7 +40,7 @@ class ActionBar extends React.Component {
     }
 
     _createNote () {
-        debugger;
+
         Actions.createNotice({
                 'directoryId': this.state.active,
                 'title': 'TestNotice',

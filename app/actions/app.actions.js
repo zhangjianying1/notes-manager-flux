@@ -20,7 +20,7 @@ const AppActions = {
             });
     },
     getNoticesAPI: () => {
-        debugger;
+
         API
             .get('http://localhost:3000/notices/')
             .then((notices) => {
@@ -71,11 +71,11 @@ const AppActions = {
             });
     },
     updateNotice: (data) => {
-        debugger;
+
         API
             .put(`http://localhost:3000/notices/${data.id}`, data)
             .then( (notice) => {
-                debugger;
+
                 handleViewAction({
                     actionType: AppConstant.NOTICE_UPDATE,
                     data: notice

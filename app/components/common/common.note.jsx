@@ -1,13 +1,14 @@
 import React from 'react';
 import classNames from 'classnames';
 import Actions from '../../actions/app.actions.js';
+import { Link } from 'react-router';
 
 const ENTER_KEY_CODE = 13;
 
 class Note extends React.Component {
     constructor (props) {
         super (props);
-        debugger;
+
         this.state = {
             isEdit: false,
             title: this.props.notice.title,
@@ -16,7 +17,7 @@ class Note extends React.Component {
     }
 
     _quickEdit () {
-        debugger;
+
         this.setState({
             isEdit: true
         });
@@ -68,7 +69,9 @@ class Note extends React.Component {
         return (
             <div className='b-note'>
                 <div className='b-note__icon'>
-                    <img className = 'b-note__icon_img'  src='../assets/note.png' alt='note'/>
+                    <Link to = {`/update/${this.props.notice.id}`}>
+                        <img className = 'b-note__icon_img'  src='../assets/note.png' alt='note'/>
+                    </Link>
                 </div>
                 <div className={_classEdit}>
                     <div className = 'b-input_note__wrapper'>

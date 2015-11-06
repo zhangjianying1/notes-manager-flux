@@ -39,10 +39,10 @@ const API = {
                 .send(data)
                 .end((err, res) => {
                     if(res.status === 404 || res.status === 500) {
-                        debugger;
+
                         reject();
                     } else {
-                        debugger;
+
                         console.log(res.status);
                         resolve(JSON.parse(res.text));
                     }

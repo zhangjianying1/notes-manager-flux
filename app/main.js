@@ -29,7 +29,7 @@ render((
     <Router>
         <Route path='/home' component={App}>
             <IndexRoute component = {MainPage} />
-            <Route path ='/create' component = {Create}>
+            <Route path ='/update/:id' component = {Create}>
             </Route>
         </Route>
     </Router>
