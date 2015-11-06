@@ -4,14 +4,13 @@
 import keyMirror from 'keymirror';
 
 export default keyMirror({
-    NOTE_CREATE: null,
-    NOTE_DESTROY: null,
-    NOTE_UPDATE: null,
+    NOTICE_CREATE: null,
+    NOTICE_DESTROY: null,
+    NOTICE_UPDATE: null,
     FOLDER_CREATE: null,
     FOLDER_DESTROY: null,
     FOLDER_UPDATE: null,
     RECEIVE_DIRECTORIES: null,
     RECEIVE_NOTICES: null,
-    UPDATE_FOLDER: null,
     FOLDER_OPEN: null
 });

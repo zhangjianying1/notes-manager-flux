@@ -9,7 +9,6 @@ config = {
     },
     entry: [
         'webpack-dev-server/client?http://localhost:3001',
-        'webpack/hot/only-dev-server',
         path.resolve(__dirname, 'app/main.js')
     ],
     output: {

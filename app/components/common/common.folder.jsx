@@ -21,13 +21,13 @@ class Folder extends React.Component {
     }
 
     _open () {
-        debugger;
+
         Actions.setActive(this.props.directory.id);
         this.setState({
             active: AppStore.getActive(),
             child: AppStore.getDirectories(this.props.directory.id)
         });
-        debugger;
+
 
         Actions.getNoticesAPI();
     }
@@ -62,7 +62,7 @@ class Folder extends React.Component {
         this.setState({
             isEdit: !this.state.isEdit,
             name: this.refs.input.value,
-            value: this.refs.input.valu
+            value: this.refs.input.value
         });
     }
 
@@ -117,7 +117,6 @@ class Folder extends React.Component {
                         <input
                             className = 'b-folder__input'
                             ref = 'input'
-                            autoFocus
                             value = { this.state.value }
                             onChange = { this._onChangeInput.bind(this) }
                             onBlur = { this._update.bind(this) }

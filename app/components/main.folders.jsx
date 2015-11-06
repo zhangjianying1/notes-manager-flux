@@ -15,10 +15,9 @@ class Folders extends React.Component {
     }
 
     _open (id, e) {
-        debugger;
+
         Actions.setActive(Number(id));
     }
-
 
     componentDidMount () {
         Actions.getDirectoriesAPI();
@@ -33,7 +32,6 @@ class Folders extends React.Component {
     }
 
     _onChange () {
-
         this.setState({
             directories: AppStore.getDirectories(Number(this.props.parentId)),
             active: AppStore.getActive()

@@ -19,7 +19,7 @@ function setDirectories (directories) {
     _directories = directories;
 }
 
-function createFolder (directory) {
+function createDirectorie (directory) {
     _directories.push(directory);
 }
 
@@ -35,32 +35,45 @@ function updateDirectory (data) {
    _directories[indexOfElement] = data;
 }
 
-function destroyFolder (id) {
+function destroyDirectorie (id) {
     _.remove(_directories,  (item) => {
         return item.id === id;
     });
 }
+
 function setNotices (notices) {
     _notices = notices;
 }
+
+function createNotice (notice) {
+    _notices.push(notice);
+}
+
+function updateNotice (notice) {
+    debugger;
+    let indexOfElement = _.indexOf(notice, _.find(_notices, item => {
+        return item.id === notice.id;
+    }));
+
+    _notices[indexOfElement] = notice;
+}
+
 const AppStore = createStore({
     getDirectories (id) {
-        debugger;
         return _.filter(_directories, (item) => {
             return item.parentId === Number(id);
         });
     },
-    getNotices (id) {
 
+    getNotices (id) {
+        debugger;
       return _.filter(_notices, (item) => {
           return item.directoryId === Number(id);
       });
     },
+
     getActive () {
       return _active;
-    },
-    getLastId () {
-        return _lastId;
     }
 });
 
@@ -72,7 +85,7 @@ AppStore.dispatchToken = register(actionObject => {
             setDirectories(action.data);
             break;
 
-        case AppConstant.UPDATE_FOLDER:
+        case AppConstant.FOLDER_UPDATE:
             updateDirectory(action.data);
             break;
 
@@ -81,23 +94,26 @@ AppStore.dispatchToken = register(actionObject => {
             break;
 
         case AppConstant.FOLDER_CREATE:
-
-            createFolder(action.data);
+            createDirectorie(action.data);
             break;
 
         case AppConstant.FOLDER_DESTROY:
-           destroyFolder(action.data);
+            destroyDirectorie(action.data);
             break;
 
-
         case AppConstant.FOLDER_OPEN:
-
             setActive(action.data);
             break;
 
-        case AppConstant.NOTE_CREATE:
+        case AppConstant.NOTICE_CREATE:
+
+            createNotice(action.data);
             break;
 
+        case AppConstant.NOTICE_UPDATE:
+
+            updateNotice(action.data);
+            break;
     }
 
     AppStore.emitChange();

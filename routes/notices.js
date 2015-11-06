@@ -33,6 +33,7 @@ router
     }
   })
   .put('/:id', function (req, res) {
+      console.log(req.body);
     var notice = _.pick(req.body, [
           'id',
           'directoryId',
@@ -44,10 +45,13 @@ router
       )
       , oldEntityIndex = _.findIndex(store.notices, function (not) {
         return not.id == req.params.id
-      })
+      });
+
 
     if (oldEntityIndex !== -1) {
       store.notices.splice(oldEntityIndex, 1, notice)
+      console.log('=================================');
+      console.log(notice);
       res.send(notice)
     } else {
       res.status(500).send('no entity')

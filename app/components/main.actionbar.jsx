@@ -39,6 +39,15 @@ class ActionBar extends React.Component {
         });
     }
 
+    _createNote () {
+        debugger;
+        Actions.createNotice({
+                'directoryId': this.state.active,
+                'title': 'TestNotice',
+                'description': 'Test description',
+                'tags': 'T4'
+            });
+    }
 
     render () {
         return (
@@ -48,7 +57,8 @@ class ActionBar extends React.Component {
                         onClick = {this._create.bind(this)}></span>
                 </div>
                 <div className='b-btn b-btns__add_note'>
-                    <span className='fontawesome-pencil'></span>
+                    <span className='fontawesome-pencil'
+                          onClick = {this._createNote.bind(this)}></span>
                 </div>
                 <div className='b-btn b-btns__remove_note'>
                     <span className='fontawesome-remove'

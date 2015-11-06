@@ -20,7 +20,7 @@ const AppActions = {
             });
     },
     getNoticesAPI: () => {
-
+        debugger;
         API
             .get('http://localhost:3000/notices/')
             .then((notices) => {
@@ -31,6 +31,16 @@ const AppActions = {
             })
             .catch((err) => {
                 console.log(err);
+            });
+    },
+    createNotice: (notice) => {
+        API
+            .post('http://localhost:3000/notices/', notice)
+            .then((notice) => {
+                handleViewAction({
+                    actionType: AppConstant.NOTICE_CREATE,
+                    data: notice
+                });
             });
     },
     createFolder: (data) => {
@@ -52,8 +62,23 @@ const AppActions = {
             .put(`http://localhost:3000/directories/${data.id}`, data)
             .then( () => {
                 handleViewAction({
-                    actionType: AppConstant.UPDATE_FOLDER,
+                    actionType: AppConstant.FOLDER_UPDATE,
                     data: data
+                });
+            })
+            .catch( err => {
+                console.log(err);
+            });
+    },
+    updateNotice: (data) => {
+        debugger;
+        API
+            .put(`http://localhost:3000/notices/${data.id}`, data)
+            .then( (notice) => {
+                debugger;
+                handleViewAction({
+                    actionType: AppConstant.NOTICE_UPDATE,
+                    data: notice
                 });
             })
             .catch( err => {

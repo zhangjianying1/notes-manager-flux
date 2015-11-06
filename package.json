@@ -21,10 +21,12 @@
     "es6-promise": "^3.0.2",
     "express": "^4.13.3",
     "flux": "^2.1.1",
+    "history": "^1.13.0",
     "keymirror": "^0.1.1",
     "lodash": "^3.10.1",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
+    "react-router": "^1.0.0-rc4",
     "superagent": "^1.4.0",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.1"

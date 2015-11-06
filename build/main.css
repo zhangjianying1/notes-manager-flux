@@ -237,13 +237,12 @@ input {
     transition: opacity 0.5s ease;
 }
 .b-note {
-    width:100px;
+    width:80px;
     display:inline-block;
     cursor:pointer;
-    margin:10px;
 }
 .b-note__icon {
-    width:80%;
+    width:90%;
     height:auto;
     margin:0 auto;
 }
@@ -251,29 +250,10 @@ input {
 .b-note__title {
     text-align: center;
 }
-.b-note__title.edit .b-input_note__wrapper {
-    display:block;
-}
-.b-note__title.edit .b-note__title_text {
-    display:none;
-}
-
 
 .b-note__icon_img {
     width:100%;
 }
-
-.b-input_note__wrapper {
-    display: none;
-}
-.b-input_note {
-    width: 100%;
-    border: 2px solid #000;
-    box-sizing: border-box;
-    padding: 2px 10px;
-}
-
-
 
 .b-footer {
     background:#000;
@@ -282,56 +262,3 @@ input {
     position:relative;
     bottom:0;
 }
-
-.b-form {
-    width: 60%;
-    margin: 5% auto;
-}
-.b-input {
-    box-sizing: border-box;
-    padding:10px;
-    margin: 15px 0;
-    vertical-align: top;
-}
-
-.b-input_title,
-.b-input_input__wrapper {
-    box-sizing: border-box;
-    display: inline-block;
-}
-.b-input_input__wrapper {
-    width:70%;
-
-}
-.b-input_title {
-    width:20%;
-    padding-right:20px;
-    text-align: right;
-}
-.b-input_input {
-    width:100%;
-    border: 2px solid black;
-    box-sizing: border-box;
-    padding:5px 10px;
-}
-.b-input_title__textarea {
-    position:relative;
-    top:-135px;
-}
-.b-input_textarea {
-    height:150px;
-    width: 100%;
-    border: 2px solid black;
-    max-height:150px;
-}
-
-.b-btn__back {
-    display:inline-block;
-    margin-left:10px;
-    margin-top: 60px;
-    width: 50px;
-    height: 50px;
-    border-radius:50%;
-    background:#000;
-}
-
