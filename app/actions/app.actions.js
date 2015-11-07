@@ -20,7 +20,6 @@ const AppActions = {
             });
     },
     getNoticesAPI: () => {
-
         API
             .get('http://localhost:3000/notices/')
             .then((notices) => {
@@ -71,7 +70,6 @@ const AppActions = {
             });
     },
     updateNotice: (data) => {
-
         API
             .put(`http://localhost:3000/notices/${data.id}`, data)
             .then( (notice) => {

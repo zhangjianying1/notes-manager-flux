@@ -5,15 +5,15 @@ import AppStore from '../stores/app.store.js';
 class ActionBar extends React.Component {
     constructor (prop) {
         super(prop);
-        //this.state = {
-        //    active: AppStore.getActive()
-        //};
+        this.state = {
+            active: AppStore.getActive()
+        };
     }
 
     _create () {
         Actions.getDirectoriesAPI();
         Actions.createFolder({
-            'parentId': AppStore.getActive, 'name': ' New folder'
+            'parentId': AppStore.getActive(), 'name': ' New folder'
         });
 
     }

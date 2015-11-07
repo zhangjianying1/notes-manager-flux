@@ -14,10 +14,8 @@ const ENTER_KEY_CODE = 13;
 class Main extends React.Component {
     constructor (prop) {
         super(prop);
-        debugger;
         this.notice = AppStore.getNotice(this.props.params.id);
         this.state = {
-            notice: this.notice,
             title: this.notice.title,
             description: this.notice.description,
             tags: this.notice.tags
@@ -32,9 +30,9 @@ class Main extends React.Component {
     }
 
     _onKeyDown (e) {
-        debugger;
         if (e.keyCode === ENTER_KEY_CODE) {
             this._toFocus(e.target.id);
+            this._save();
             this. _update(e);
         }
     }
@@ -50,7 +48,12 @@ class Main extends React.Component {
     }
 
     _save () {
-
+        debugger;
+        this.notice.title = this.state.title;
+        this.notice.description = this.state.description;
+        this.notice.tags = this.state.tags;
+        debugger;
+        Actions.updateNotice(this.notice);
     }
 
     render () {
@@ -65,7 +68,7 @@ class Main extends React.Component {
                             ref = 'title'
                             onKeyDown = { this._onKeyDown.bind(this) }
                             onChange = { this._update.bind(this) }
-                            onBlur = { this._update.bind(this) }
+                            onBlur = { this._save.bind(this) }
                             className = 'b-input_input'
                             type='text'
                             id = '0'/>
@@ -80,7 +83,7 @@ class Main extends React.Component {
                                ref = 'tags'
                                onKeyDown = { this._onKeyDown.bind(this) }
                                onChange = { this._update.bind(this) }
-                               onBlur = { this._update.bind(this) }
+                               onBlur = { this._save.bind(this) }
                                className = 'b-input_input'
                                type='text'
                             id = '1'/>
@@ -95,7 +98,7 @@ class Main extends React.Component {
                             className = 'b-input_textarea'
                             onKeyDown = { this._onKeyDown.bind(this) }
                             onChange = { this._update.bind(this) }
-                            onBlur = { this._update.bind(this) }
+                            onBlur = { this._save.bind(this) }
                             type='text'
                             ref = 'description'
                             id = '2'
