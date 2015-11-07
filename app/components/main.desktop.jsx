@@ -11,8 +11,7 @@ class Desktop extends React.Component {
 
         Actions.getNoticesAPI();
         this.state = {
-            notices: AppStore.getNotices(AppStore.getActive()),
-            active: AppStore.getActive()
+            notices: AppStore.getNotices(AppStore.getActive())
         };
     }
 
@@ -25,16 +24,16 @@ class Desktop extends React.Component {
     }
 
     _onChange () {
-
+        debugger;
+        console.log(AppStore.getActive());
         this.setState({
-            active: AppStore.getActive(),
             notices: AppStore.getNotices(AppStore.getActive())
         });
+        debugger;
     }
 
     render () {
         let _notices = [];
-
 
         forEach(this.state.notices, (item, i) => {
             _notices.push( <Note notice = { item } key = { i }/>);

@@ -15,8 +15,12 @@ class Folders extends React.Component {
     }
 
     _open (id, e) {
-
+        debugger;
         Actions.setActive(Number(id));
+        debugger;
+        this.setState({
+            active: AppStore.getActive()
+        });
     }
 
     componentDidMount () {

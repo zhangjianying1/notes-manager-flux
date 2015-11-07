@@ -7,11 +7,10 @@ const ENTER_KEY_CODE = 13;
 
 class Note extends React.Component {
     constructor (props) {
+        debugger;
         super (props);
-
         this.state = {
             isEdit: false,
-            title: this.props.notice.title,
             value: (this.props.notice.title).trim()
         };
     }
@@ -31,7 +30,7 @@ class Note extends React.Component {
     _update() {
         let data = {
             id: Number(this.props.notice.id),
-            title: (this.refs.input.value).trim(),
+            title: (this.state.value).trim(),
             position: this.props.notice.position,
             directoryId: this.props.notice.directoryId,
             description: this.props.notice.description,
@@ -41,9 +40,7 @@ class Note extends React.Component {
         Actions.updateNotice(data);
 
         this.setState({
-            isEdit: false,
-            title: this.refs.input.value,
-            value: this.refs.input.value
+            isEdit: false
         });
     }
 
@@ -63,9 +60,10 @@ class Note extends React.Component {
     render () {
         let _classEdit = classNames('b-note__title', {
             'edit': this.state.isEdit
-
         });
 
+        console.log(this.state.title);
+        debugger;
         return (
             <div className='b-note'>
                 <div className='b-note__icon'>
@@ -84,7 +82,7 @@ class Note extends React.Component {
                     </div>
                     <div className = 'b-note__title_text'
                          onDoubleClick = {this._quickEdit.bind(this)}>
-                        {this.state.title}
+                        {this.props.notice.title}
                     </div>
                 </div>
             </div>

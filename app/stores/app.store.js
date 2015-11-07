@@ -50,8 +50,8 @@ function createNotice (notice) {
 }
 
 function updateNotice (notice) {
-
-    let indexOfElement = _.indexOf(notice, _.find(_notices, item => {
+    debugger;
+    let indexOfElement = _.indexOf(_notices, _.find(_notices, item => {
         return item.id === notice.id;
     }));
 
@@ -107,6 +107,7 @@ AppStore.dispatchToken = register(actionObject => {
             break;
 
         case AppConstant.FOLDER_OPEN:
+            debugger;
             setActive(action.data);
             break;
 

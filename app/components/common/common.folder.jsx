@@ -21,13 +21,12 @@ class Folder extends React.Component {
     }
 
     _open () {
-
         Actions.setActive(this.props.directory.id);
         this.setState({
             active: AppStore.getActive(),
             child: AppStore.getDirectories(this.props.directory.id)
         });
-
+        console.log(this.state.active);
 
         Actions.getNoticesAPI();
     }

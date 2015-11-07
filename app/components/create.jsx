@@ -48,11 +48,10 @@ class Main extends React.Component {
     }
 
     _save () {
-        debugger;
         this.notice.title = this.state.title;
         this.notice.description = this.state.description;
         this.notice.tags = this.state.tags;
-        debugger;
+
         Actions.updateNotice(this.notice);
     }
 
