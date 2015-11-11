@@ -1,21 +1,34 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import Actions from '../../actions/app.actions.js';
 import { Link } from 'react-router';
+import { DragSource } from 'react-dnd';
 
 const ENTER_KEY_CODE = 13;
+const noteSource = {
+    beginDrag(props) {
+        return {};
+    }
+};
+
+function collect(connect, monitor) {
+    return {
+        connectDragSource: connect.dragSource(),
+        isDragging: monitor.isDragging()
+    };
+}
 
 class Note extends React.Component {
-    constructor (props) {
+    constructor(props) {
         debugger;
-        super (props);
+        super(props);
         this.state = {
             isEdit: false,
             value: (this.props.notice.title).trim()
         };
     }
 
-    _quickEdit () {
+    _quickEdit() {
 
         this.setState({
             isEdit: true
@@ -44,44 +57,49 @@ class Note extends React.Component {
         });
     }
 
-    _onChangeInput (e) {
+    _onChangeInput(e) {
         this.setState({
             value: (e.target.value).trim()
         });
     }
 
-    _onKeyDown (e) {
+    _onKeyDown(e) {
         if (e.keyCode === ENTER_KEY_CODE) {
             this.refs.input.blur();
-            this. _update();
+            this._update();
         }
     }
 
-    render () {
+    render() {
         let _classEdit = classNames('b-note__title', {
             'edit': this.state.isEdit
         });
+        const { connectDragSource, isDragging } = this.props;
 
-        console.log(this.state.title);
         debugger;
-        return (
-            <div className='b-note'>
+        return connectDragSource(
+            <div className='b-note' style={{
+                opacity: isDragging ? 0.5 : 1
+                }}>
                 <div className='b-note__icon'>
-                    <Link to = {`/update/${this.props.notice.id}`}>
-                        <img className = 'b-note__icon_img'  src='../assets/note.png' alt='note'/>
+                    <Link to={`/update/${this.props.notice.id}`}>
+                        <img onDragStart={() => { return false; }}
+                             className='b-note__icon_img'
+                             src='../assets/note.png'
+                             alt='note'/>
                     </Link>
                 </div>
                 <div className={_classEdit}>
-                    <div className = 'b-input_note__wrapper'>
-                        <input ref = 'input'
-                            value = { this.state.value }
-                            onChange = { this._onChangeInput.bind(this) }
-                            onBlur = { this._update.bind(this) }
-                            onKeyDown = {this._onKeyDown.bind(this)}
-                            className = 'b-input_note' />
+                    <div className='b-input_note__wrapper'>
+                        <input ref='input'
+                               value={ this.state.value }
+                               onChange={ this._onChangeInput.bind(this) }
+                               onBlur={ this._update.bind(this) }
+                               onKeyDown={this._onKeyDown.bind(this)}
+                               className='b-input_note'/>
                     </div>
-                    <div className = 'b-note__title_text'
-                         onDoubleClick = {this._quickEdit.bind(this)}>
+                    <div className='b-note__title_text'
+                         onDoubleClick={this._quickEdit.bind(this)}>
                         {this.props.notice.title}
                     </div>
                 </div>
@@ -90,4 +108,10 @@ class Note extends React.Component {
     }
 }
 
-export default Note;
+Note.propsTypes = {
+    notice: PropTypes.object.isRequired,
+    connectDragSource: PropTypes.func.isRequired,
+    isDragging: PropTypes.bool.isRequired
+};
+
+export default DragSource('note', noteSource, collect)(Note);
