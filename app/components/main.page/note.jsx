@@ -1,15 +1,69 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import Actions from '../../actions/app.actions.js';
+import ItemTypes from '../../constants/item.types';
+import { findDOMNode } from 'react-dom';
 import { Link } from 'react-router';
-import { DragSource } from 'react-dnd';
+import { DragSource, DropTarget } from 'react-dnd';
 
 const ENTER_KEY_CODE = 13;
-const noteSource = {
+
+const noticeSource = {
     beginDrag(props) {
-        return {};
+        return {
+            position: props.notice.position,
+            id: props.notice.id
+        };
     }
 };
+
+const noticeTarget = {
+    hover(props, monitor, component) {
+        const dragPosition = monitor.getItem().position;
+        const hoverPosition = props.position;
+
+        // Don't replace items with themselves
+        if (dragPosition === hoverPosition) {
+            return;
+        }
+
+        // Determine rectangle on screen
+        const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
+
+        // Get vertical middle
+        const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+
+        // Determine mouse position
+        const clientOffset = monitor.getClientOffset();
+
+        // Get pixels to the top
+        const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+
+        // Only perform the move when the mouse has crossed half of the items height
+        // When dragging downwards, only move when the cursor is below 50%
+        // When dragging upwards, only move when the cursor is above 50%
+
+        //// Dragging downwards
+        //if (dragPosition < hoverPosition && hoverClientY < hoverMiddleY) {
+        //    return;
+        //}
+        //
+        //// Dragging upwards
+        //if (dragPosition > hoverPosition && hoverClientY > hoverMiddleY) {
+        //    return;
+        //}
+
+        // Time to actually perform the action
+        props.moveNotice(dragPosition, hoverPosition);
+
+        // Note: we're mutating the monitor item here!
+        // Generally it's better to avoid mutations,
+        // but it's good here for the sake of performance
+        // to avoid expensive index searches.
+        monitor.getItem().position = hoverPosition;
+    }
+};
+
 
 function collect(connect, monitor) {
     return {
@@ -18,9 +72,16 @@ function collect(connect, monitor) {
     };
 }
 
+@DropTarget(ItemTypes.NOTICE, noticeTarget, connect => ({
+    connectDropTarget: connect.dropTarget()
+}))
+@DragSource(ItemTypes.NOTICE, noticeSource, (connect, monitor) => ({
+        connectDragSource: connect.dragSource(),
+        isDragging: monitor.isDragging()
+}))
+
 class Note extends React.Component {
     constructor(props) {
-        debugger;
         super(props);
         this.state = {
             isEdit: false,
@@ -74,10 +135,10 @@ class Note extends React.Component {
         let _classEdit = classNames('b-note__title', {
             'edit': this.state.isEdit
         });
-        const { connectDragSource, isDragging } = this.props;
+        const { connectDragSource, connectDropTarget, isDragging } = this.props;
 
-        debugger;
-        return connectDragSource(
+        console.log(isDragging);
+        return connectDragSource(connectDropTarget(
             <div className='b-note' style={{
                 opacity: isDragging ? 0.5 : 1
                 }}>
@@ -104,7 +165,7 @@ class Note extends React.Component {
                     </div>
                 </div>
             </div>
-        );
+        ));
     }
 }
 
@@ -114,4 +175,4 @@ Note.propsTypes = {
     isDragging: PropTypes.bool.isRequired
 };
 
-export default DragSource('note', noteSource, collect)(Note);
+export default Note;

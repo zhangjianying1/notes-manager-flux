@@ -6,7 +6,6 @@ import { Dispatcher } from 'flux';
 const flux = new Dispatcher();
 
 export function register(callback) {
-    console.log('In dispatcher');
     return flux.register(callback);
 }
 

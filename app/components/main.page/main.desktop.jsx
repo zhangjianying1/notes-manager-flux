@@ -1,19 +1,19 @@
 import React from 'react';
-import Search from './common/common.search.jsx';
-import Note from './common/common.note.jsx';
-import Actions from '../actions/app.actions.js';
-import AppStore from '../stores/app.store.js';
-import update from 'react/lib/update';
+import Search from './search.jsx';
+import Note from './note.jsx';
+import Actions from '../../actions/app.actions.js';
+import AppStore from '../../stores/app.store.js';
+import update from '../../../node_modules/react/lib/update';
 import { forEach } from 'lodash';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
+@DragDropContext(HTML5Backend)
 
-class Desktop extends React.Component {
+export default  class Desktop extends React.Component {
     constructor (prop) {
         super(prop);
 
-        Actions.getNoticesAPI();
         this.state = {
             notices: AppStore.getNotices(AppStore.getActive())
         };
@@ -24,27 +24,25 @@ class Desktop extends React.Component {
     }
 
     componentWillUnmount () {
+        debugger;
         AppStore.removeChangeListener(this._onChange.bind(this));
     }
 
     _onChange () {
-        debugger;
-        console.log(AppStore.getActive());
         this.setState({
             notices: AppStore.getNotices(AppStore.getActive())
         });
-        debugger;
     }
 
-    moveNotice (dragIndex, hoverIndex) {
+    moveNotice (dragPosition, hoverPosition) {
         const { notices } = this.state;
-        const dragNotice = notices[dragIndex];
+        const dragNotice = notices[dragPosition];
 
         this.setState(update(this.state, {
             notices: {
                 $splice: [
-                    [dragIndex, 1],
-                    [hoverIndex, 0, dragNotice]
+                    [dragPosition, 1],
+                    [hoverPosition, 0, dragNotice]
                 ]
             }
         }));
@@ -54,7 +52,7 @@ class Desktop extends React.Component {
         let _notices = [];
 
         forEach(this.state.notices, (item, i) => {
-            _notices.push( <Note notice = { item } key = { i }/>);
+            _notices.push( <Note moveNotice = {this.moveNotice.bind(this)} notice = { item } key = { i }/>);
         });
 
         return (
@@ -68,4 +66,3 @@ class Desktop extends React.Component {
     }
 }
 
-export default DragDropContext(HTML5Backend)(Desktop);

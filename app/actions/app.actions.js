@@ -70,7 +70,6 @@ const AppActions = {
             });
     },
     updateNotice: (data) => {
-        debugger;
         API
             .put(`http://localhost:3000/notices/${data.id}`, data)
             .then( (notice) => {

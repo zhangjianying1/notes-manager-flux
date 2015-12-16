@@ -1,13 +1,11 @@
 import React from 'react';
-import MainPage from './components/main.jsx';
+import Main from './components/main.page/main.jsx';
 import Header from './components/header.jsx';
 import Create from './components/create.jsx';
 import { render } from 'react-dom';
 import { Router, Route, IndexRoute, Link, IndexLink } from 'react-router';
 import { createHistory, useBasename } from 'history';
 
-
-console.log(Router);
 export default class App extends React.Component {
     constructor (props) {
         super(props);
@@ -23,12 +21,10 @@ export default class App extends React.Component {
     }
 }
 
-
-
 render((
     <Router>
         <Route path='/home' component={App}>
-            <IndexRoute component = {MainPage} />
+            <IndexRoute component = {Main} />
             <Route path ='/update/:id' component = {Create}>
             </Route>
         </Route>

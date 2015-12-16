@@ -1,48 +1,38 @@
 import React from 'react';
-import Actions from '../actions/app.actions.js';
-import AppStore from '../stores/app.store.js';
+import Actions from '../../actions/app.actions.js';
+import AppStore from '../../stores/app.store.js';
 
 class ActionBar extends React.Component {
     constructor (prop) {
         super(prop);
-        this.state = {
-            active: AppStore.getActive()
-        };
+        //this.state = {
+        //    active: AppStore.getActive()
+        //};
+        this.active = AppStore.getActive();
     }
 
     _create () {
         Actions.getDirectoriesAPI();
         Actions.createFolder({
-            'parentId': AppStore.getActive(), 'name': ' New folder'
+            'parentId': AppStore.getActive(),
+            'name': ' New folder'
         });
 
     }
 
     _delete () {
-        if(this.state.active !== 1) {
+
+        if(AppStore.getActive() !== 1) {
+            debugger;
             Actions.deleteFolder(AppStore.getActive());
-            Actions.getDirectoriesAPI();
         }
     }
 
-    componentWillMount () {
-        AppStore.addChangeListener(this._onChange.bind(this));
-    }
-
-    componentWillUnmount () {
-        AppStore.removeChangeListener(this._onChange.bind(this));
-    }
-
-    _onChange () {
-        this.setState({
-            active: AppStore.getActive()
-        });
-    }
 
     _createNote () {
 
         Actions.createNotice({
-                'directoryId': this.state.active,
+                'directoryId': AppStore.getActive(),
                 'title': 'TestNotice',
                 'description': 'Test description',
                 'tags': 'T4'

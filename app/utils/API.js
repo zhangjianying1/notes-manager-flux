@@ -42,8 +42,6 @@ const API = {
 
                         reject();
                     } else {
-
-                        console.log(res.status);
                         resolve(JSON.parse(res.text));
                     }
                 });
@@ -55,7 +53,6 @@ const API = {
                 .del(url)
                 .end((err, res) => {
                     if(res.status === 200) {
-                        console.log(res);
                         resolve();
                     } else {
                         reject();

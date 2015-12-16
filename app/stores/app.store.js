@@ -10,8 +10,6 @@ const CHANGE_EVENT = 'change';
 
 let _notices = [];
 let _directories = [];
-let _child = [];
-let _lastId = null;
 let _active = 1;
 
 
@@ -24,7 +22,7 @@ function createDirectorie (directory) {
 }
 
 function setActive (id) {
-    _active = Number(id);
+    _active = Number(id) || 1;
 }
 
 function updateDirectory (data) {
@@ -35,10 +33,12 @@ function updateDirectory (data) {
    _directories[indexOfElement] = data;
 }
 
-function destroyDirectorie (id) {
+function destroyDirectory (id) {
+    setActive();
     _.remove(_directories,  (item) => {
         return item.id === id;
     });
+
 }
 
 function setNotices (notices) {
@@ -50,7 +50,6 @@ function createNotice (notice) {
 }
 
 function updateNotice (notice) {
-    debugger;
     let indexOfElement = _.indexOf(_notices, _.find(_notices, item => {
         return item.id === notice.id;
     }));
@@ -103,11 +102,10 @@ AppStore.dispatchToken = register(actionObject => {
             break;
 
         case AppConstant.FOLDER_DESTROY:
-            destroyDirectorie(action.data);
+            destroyDirectory(action.data);
             break;
 
         case AppConstant.FOLDER_OPEN:
-            debugger;
             setActive(action.data);
             break;
 
